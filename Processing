@@ -1,0 +1,102 @@
+/*
+ *Works with Arduino sketch 'pdxMap'
+ *and arduino 8 LED sheild
+ */
+
+import processing.serial.*;
+
+Serial myPort; //Se declara una variable para la comunicacion serial
+int a = 500;
+
+void setup(){  
+  println(Serial.list());
+  myPort = new Serial(this, Serial.list()[0], 9600); //Se especifica el puerto en el que se trabajará
+  myPort.buffer(1);
+  size(500, 400); //Tamaño del Canvas
+  background(51);
+  noLoop();  // El draw se ejecutara una sola vez
+}
+
+void draw() { //Destro del Draw se dibujaron unos rect que funcionarán como botones
+  fill(a,0,0); //Color de los botones
+  rect(0,0,width/4, height/2);
+  rect(100,0,width/4, height/2);
+  rect(200,0,width/4, height/2);
+  rect(300,0,width/4, height/2);
+  rect(0,200,width/4, height/2);
+  rect(100,200,width/4, height/2);
+  rect(200,200,width/4, height/2);
+  rect(300,200,width/4, height/2);
+  rect(400,200,width/4, height/2);
+  rect(400,0,width/4, height/2);
+}
+
+void mousePressed() {
+  println("Coordinates: " + mouseX +"," + mouseY); //Muestra la coordenada en donde se hace click con el mouse
+  mouseAction();
+    }
+
+void mouseAction(){
+  if( mouseX > 0 && mouseX < 100){ //Esta condición sirve para especifcar que led se encendera con cada boton (rect)
+   if( mouseY > 0 && mouseY < 200){ //El primer boton va de la coordenada 1 en X a la 99 en x y de la coordenada 1 en Y al 199 en Y
+    println("square 1"); //En consola mostrara mensaje de que numero de cuadro es
+    myPort.write(1);  // Y especifica que led se encendera.
+   }
+  }
+  if( mouseX > 100 && mouseX < 200){
+   if( mouseY > 0 && mouseY < 200){
+    println("square 2");
+    myPort.write(2); 
+   }
+  }
+  if( mouseX > 200 && mouseX < 300){
+   if( mouseY > 0 && mouseY < 200){
+    println("square 3");
+    myPort.write(3); 
+   }
+  }
+  if( mouseX > 300 && mouseX < 400){
+   if( mouseY > 0 && mouseY < 200){
+    println("square 4");
+    myPort.write(4); 
+   }
+  }
+  if( mouseX > 400 && mouseX < 500){
+   if( mouseY > 0 && mouseY < 200){
+    println("square 10");
+    myPort.write(5); 
+   }
+  }
+  if( mouseX > 0 && mouseX < 100){
+   if( mouseY > 200 && mouseY < 400){
+    println("square 5");
+    myPort.write(6); 
+   }
+  }
+  if( mouseX > 100 && mouseX < 200){
+   if( mouseY > 200 && mouseY < 400){
+    println("square 6");
+    myPort.write(7); 
+   }
+  }
+  if( mouseX > 200 && mouseX < 300){
+   if( mouseY > 200 && mouseY < 400){
+    println("square 7");
+    myPort.write(8); 
+   }
+  }
+  if( mouseX > 300 && mouseX < 400){
+   if( mouseY > 200 && mouseY < 400){
+    println("square 8");
+    myPort.write(9); 
+   }
+  }
+  if( mouseX > 400 && mouseX < 500){
+   if( mouseY > 200 && mouseY < 400){
+    println("square 9");
+    myPort.write(10); 
+   }
+  }
+
+   
+}
