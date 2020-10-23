@@ -10,9 +10,9 @@ void setup()
 { 
  //Initialize pins as OUTPUTS and begin serial connection
  for(int i=1; i<12 ; i++){
-  pinMode(Pin[i], OUTPUT); 
+  pinMode(Pin[i], OUTPUT);  //Pin de Salida porque es de 5 voltios
  }
- Serial.begin(9600);
+ Serial.begin(9600); //La comunicación serial
 } 
  
 void loop() 
@@ -21,7 +21,7 @@ void loop()
   switch (input){
     case 1:  //If processing passes a '1' do case one
       if(input == 1){
-        digitalWrite(Pin[1],HIGH);
+        digitalWrite(Pin[1],HIGH); //Pin de entrada activado 
         delay(1000);
         digitalWrite(Pin[1],LOW);
         //For fading un-comment
